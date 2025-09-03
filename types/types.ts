@@ -8,13 +8,20 @@ export type Allergen =
   | 'shellfish'
   | 'sesame'
   | 'mustard';
+  
+export type Categories =
+    | "Bebida"
+    | "Vegetariano"
+    | "Entradas"
+
+
 
 export interface MenuItem {
   id: string;
   name: string;
   description: string;
   price: number;
-  categories?: string[];
+  category?: Categories[];
   availability?: string;
   preparationTime?: number;
   addons?: { id: string; name: string; price?: number }[];
