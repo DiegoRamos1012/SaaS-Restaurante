@@ -1,7 +1,10 @@
 import Link from "next/link";
+import React from "react";
 import { mockMenuItems } from "@/data/mockedData";
 import { formatCurrency } from "@/utils/format";
-import React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
+import { Cart } from "@/components/Cart";
 
 export default function Menu() {
   // Agrupamento direto por categoria
@@ -38,12 +41,7 @@ export default function Menu() {
                 </React.Fragment>
               ))}
             </nav>
-            <Link
-              href="/"
-              className="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-full transition-colors mt-4 md:mt-0"
-            >
-              Voltar
-            </Link>
+            <Cart />
           </div>
         </div>
       </header>

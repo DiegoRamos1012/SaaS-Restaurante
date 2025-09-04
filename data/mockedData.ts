@@ -1,4 +1,4 @@
-import { MenuItem, OrderItem, Order, Table, Allergen } from '../types/types';
+import { MenuItem, OrderItem, Order, Table } from '../types/types';
 
 // Dados mockados de itens do menu
 export const mockMenuItems: MenuItem[] = [
