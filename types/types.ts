@@ -1,19 +1,21 @@
 export type Allergen =
-  | 'milk'
-  | 'eggs'
-  | 'peanuts'
-  | 'tree-nuts'
-  | 'gluten'
-  | 'soy'
-  | 'shellfish'
-  | 'sesame'
-  | 'mustard';
+  | 'Leite'
+  | 'Ovos'
+  | 'Amendoim'
+  | 'Nozes'
+  | 'Glúten'
+  | 'Soja'
+  | 'Camarão'
+  | 'Gergelim'
+  | 'Mostarda';
   
 export type Categories =
-    | "Bebida"
-    | "Vegetariano"
-    | "Entradas";
-    
+  | "Bebidas"
+  | "Vegano"
+  | "Entradas"
+  | "Pratos Principais"
+  | "Acompanhamentos"
+  | "Sobremesas";
 
 export type MenuSection = {
   category: string;
@@ -26,6 +28,7 @@ export interface MenuItem {
   id: string;
   name: string;
   description: string;
+  image: string;
   price: number;
   categories: string[];
   availability?: string;
