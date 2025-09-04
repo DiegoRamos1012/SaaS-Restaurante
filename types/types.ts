@@ -12,7 +12,13 @@ export type Allergen =
 export type Categories =
     | "Bebida"
     | "Vegetariano"
-    | "Entradas"
+    | "Entradas";
+    
+
+export type MenuSection = {
+  category: string;
+  items: MenuItem[];
+};
 
 
 
@@ -21,7 +27,7 @@ export interface MenuItem {
   name: string;
   description: string;
   price: number;
-  category?: Categories[];
+  categories: string[];
   availability?: string;
   preparationTime?: number;
   addons?: { id: string; name: string; price?: number }[];
