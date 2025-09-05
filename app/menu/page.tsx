@@ -3,6 +3,7 @@ import { mockMenuItems } from "@/data/mockedData";
 import { formatCurrency } from "@/utils/format";
 import { Cart } from "@/components/Cart";
 import { Button } from "@/components/ui/button";
+import { Info, Plus } from "lucide-react";
 
 export default function Menu() {
   // Agrupamento direto por categoria
@@ -116,32 +117,20 @@ export default function Menu() {
                             </span>
                           ))}
                       </div>
-                      <Button className="text-white bg-amber-500 hover:bg-amber-600 rounded-full p-1 transition-colors">
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
+                      <div className="flex space-x-3">
+                        <Button
+                          className="text-white bg-amber-600 hover:bg-amber-700 rounded-full p-0.5 w-8 h-8 min-w-0 flex transition-colors"
+                          aria-label="Informações"
                         >
-                          <circle cx="12" cy="12" r="10" />
-                          <line x1="12" y1="16" x2="12" y2="12" />
-                          <line x1="12" y1="8" x2="12" y2="8" />
-                        </svg>
-                      </Button>
-                      <button className="text-white bg-amber-600 hover:bg-amber-700 rounded-full p-1 ml-1 transition-colors">
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
+                          <Info size={16} />
+                        </Button>
+                        <Button
+                          className="text-white bg-amber-600 hover:bg-amber-700 rounded-full p-0.5 w-8 h-8 min-w-0 flex transition-colors"
+                          aria-label="Adicionar ao Carrinho"
                         >
-                          <path d="M12 5v14M5 12h14" />
-                        </svg>
-                      </button>
+                          <Plus size={16} />
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </article>
