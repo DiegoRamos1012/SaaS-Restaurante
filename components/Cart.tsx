@@ -13,7 +13,7 @@ import { formatCurrency } from "@/utils/format";
 import { useCart } from "@/contexts/CartContext";
 
 export function Cart() {
-  const { cartItems, addToCart, removeFromCart, changeQuantity } = useCart();
+  const { cartItems, removeFromCart, changeQuantity, clearCart } = useCart();
 
   const cartTotal = cartItems.reduce((sum, item) => sum + item.total, 0);
 
@@ -138,6 +138,12 @@ export function Cart() {
                   Adicionar mais
                 </Button>
               </SheetClose>
+              <Button
+                className="w-full bg-red-100 hover:bg-red-200 text-red-700 font-semibold py-2 rounded-lg transition-colors text-base"
+                onClick={() => clearCart}
+              >
+                Limpar carrinho
+              </Button>
             </div>
           </>
         )}

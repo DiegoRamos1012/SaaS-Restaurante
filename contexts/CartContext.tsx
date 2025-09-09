@@ -16,6 +16,7 @@ type CartContextType = {
   addToCart: (item: MenuItem) => void;
   removeFromCart: (menuItemId: string) => void;
   changeQuantity: (menuItemId: string, delta: number) => void;
+  clearCart: []
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -69,9 +70,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         )
         .filter((i) => i.quantity > 0)
     );
-    }
-    
-    function cleanAll(menu)
+  }
+
+  function cleanCart() {
+    setCartItems([]);
+  }
 
   return (
     <CartContext.Provider
