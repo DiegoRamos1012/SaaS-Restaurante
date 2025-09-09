@@ -140,7 +140,7 @@ export function Cart() {
               </SheetClose>
               <Button
                 className="w-full bg-red-100 hover:bg-red-200 text-red-700 font-semibold py-2 rounded-lg transition-colors text-base"
-                onClick={() => clearCart}
+                onClick={() => clearCart()}
               >
                 Limpar carrinho
               </Button>

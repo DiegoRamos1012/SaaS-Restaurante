@@ -22,8 +22,23 @@ export type MenuSection = {
   items: MenuItem[];
 };
 
+export type CartItem = {
+  menuItemId: string;
+  name: string;
+  quantity: number;
+  unitPrice: number;
+  total: number;
+};
 
+export type CartContextType = {
+  cartItems: CartItem[];
+  addToCart: (item: MenuItem) => void;
+  removeFromCart: (menuItemId: string) => void;
+  changeQuantity: (menuItemId: string, delta: number) => void;
+  clearCart: () => void;
+};
 
+/*----------------------------------------------------------------------------------------------------------- */
 export interface MenuItem {
   id: string;
   name: string;
