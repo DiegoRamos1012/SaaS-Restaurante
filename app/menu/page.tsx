@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { mockMenuItems } from "@/data/mockedData";
 import { formatCurrency } from "@/utils/format";
 import { Cart } from "@/components/Cart";
 import { Button } from "@/components/ui/button";
 import { Info, Plus } from "lucide-react";
+import InfoModal from "@/components/Dialogs/InfoModal";
+import { MenuItem } from "@/types/types";
+import { useCart } from "@/contexts/CartContext";
 
 export default function Menu() {
-  // Agrupamento direto por categoria
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const { addToCart } = useCart();
   const categoryMap: Record<string, typeof mockMenuItems> = {};
   mockMenuItems.forEach((item) => {
     item.categories.forEach((cat) => {
@@ -121,12 +126,17 @@ export default function Menu() {
                         <Button
                           className="text-white bg-amber-600 hover:bg-amber-700 rounded-full p-0.5 w-8 h-8 min-w-0 flex transition-colors"
                           aria-label="Informações"
+                          onClick={() => {
+                            setSelectedItem(item);
+                            setModalVisible(true);
+                          }}
                         >
                           <Info size={16} />
                         </Button>
                         <Button
                           className="text-white bg-amber-600 hover:bg-amber-700 rounded-full p-0.5 w-8 h-8 min-w-0 flex transition-colors"
                           aria-label="Adicionar ao Carrinho"
+                          onClick={() => addToCart(item)}
                         >
                           <Plus size={16} />
                         </Button>
@@ -139,7 +149,14 @@ export default function Menu() {
           </section>
         ))}
       </main>
-
+      <InfoModal
+        show={modalVisible}
+        onHide={() => {
+          setModalVisible(false);
+          setSelectedItem(null);
+        }}
+        item={selectedItem}
+      />
       <footer className="bg-amber-800 text-amber-100 py-4 px-4 mt-6">
         <div className="container mx-auto text-center">
           <p className="mb-2 text-sm">Le Gourmet - Culinária Contemporânea</p>

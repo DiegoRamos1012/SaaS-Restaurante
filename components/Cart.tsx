@@ -1,6 +1,6 @@
 "use client";
 
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, X, Minus, Plus } from "lucide-react";
 import {
   Sheet,
   SheetTrigger,
@@ -9,37 +9,11 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
-import { useState } from "react";
-import { mockOrderItems } from "@/data/mockedData";
 import { formatCurrency } from "@/utils/format";
+import { useCart } from "@/contexts/CartContext";
 
 export function Cart() {
-  const [cartItems, setCartItems] = useState(mockOrderItems);
-
-  const removeItem = (itemId: string) => {
-    setCartItems(cartItems.filter((item) => item.menuItemId !== itemId));
-  };
-
-  const updateQuantity = (itemId: string, newQuantity: number) => {
-    if (newQuantity < 1) return;
-
-    setCartItems(
-      cartItems.map((item) =>
-        item.menuItemId === itemId
-          ? {
-              ...item,
-              quantity: newQuantity,
-              total:
-                newQuantity * item.unitPrice +
-                (item.addons?.reduce(
-                  (sum, addon) => sum + (addon.price || 0),
-                  0
-                ) || 0),
-            }
-          : item
-      )
-    );
-  };
+  const { cartItems, addToCart, removeFromCart, changeQuantity } = useCart();
 
   const cartTotal = cartItems.reduce((sum, item) => sum + item.total, 0);
 
@@ -47,7 +21,7 @@ export function Cart() {
     <Sheet>
       <SheetTrigger asChild>
         <Button className="relative bg-amber-600 hover:bg-amber-700 rounded-full p-2 flex items-center justify-center h-9 w-9 md:h-10 md:w-10">
-          <ShoppingCart /> 
+          <ShoppingCart />
           {cartItems.length > 0 && (
             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
               {cartItems.length}
@@ -92,52 +66,42 @@ export function Cart() {
                     <div className="font-semibold text-gray-800 truncate">
                       {item.name}
                     </div>
-                    {item.addons && item.addons.length > 0 && (
-                      <div className="text-xs text-gray-500 mt-1">
-                        {item.addons.map((addon) => addon.name).join(", ")}
-                      </div>
-                    )}
-                    <div className="flex items-center mt-2">
-                      <button
-                        onClick={() =>
-                          updateQuantity(item.menuItemId, item.quantity - 1)
-                        }
-                        className="w-6 h-6 bg-amber-100 rounded-full text-amber-800 flex items-center justify-center"
+                    <div className="flex items-center mt-2 gap-2">
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        className="h-6 w-6"
+                        onClick={() => changeQuantity(item.menuItemId, -1)}
+                        aria-label="Diminuir quantidade"
                       >
-                        -
-                      </button>
-                      <span className="mx-2 text-sm font-medium">
+                        <Minus size={16} />
+                      </Button>
+                      <span className="mx-2 text-sm font-medium w-6 text-center">
                         {item.quantity}
                       </span>
-                      <button
-                        onClick={() =>
-                          updateQuantity(item.menuItemId, item.quantity + 1)
-                        }
-                        className="w-6 h-6 bg-amber-100 rounded-full text-amber-800 flex items-center justify-center"
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        className="h-6 w-6"
+                        onClick={() => changeQuantity(item.menuItemId, 1)}
+                        aria-label="Aumentar quantidade"
                       >
-                        +
-                      </button>
+                        <Plus size={16} />
+                      </Button>
                     </div>
                   </div>
-                  <div className="text-right">
+                  <div className="text-right flex flex-col items-end gap-2">
                     <div className="font-bold text-amber-700">
                       {formatCurrency(item.total)}
                     </div>
                     <Button
-                      onClick={() => removeItem(item.menuItemId)}
-                      className="mt-2 bg-transparent hover:bg-red-50 text-red-500 hover:text-red-700 p-1 h-auto rounded-full transition-colors"
-                      title="Remover item"
+                      size="icon"
+                      variant="ghost"
+                      className="h-6 w-6 text-red-500"
+                      onClick={() => removeFromCart(item.menuItemId)}
+                      aria-label="Remover item"
                     >
-                      <svg
-                        width="16"
-                        height="16"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M6 6l12 12M6 18L18 6" />
-                      </svg>
+                      <X size={16} />
                     </Button>
                   </div>
                 </div>
