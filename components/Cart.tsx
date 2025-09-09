@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ShoppingCart } from "lucide-react";
 import {
   Sheet,
   SheetTrigger,
@@ -47,10 +47,7 @@ export function Cart() {
     <Sheet>
       <SheetTrigger asChild>
         <Button className="relative bg-amber-600 hover:bg-amber-700 rounded-full p-2 flex items-center justify-center h-9 w-9 md:h-10 md:w-10">
-          <Avatar className="h-5 w-5 md:h-6 md:w-6">
-            <AvatarImage src="/online-shopping.png" alt="Cart" />
-            <AvatarFallback>Cart</AvatarFallback>
-          </Avatar>
+          <ShoppingCart /> 
           {cartItems.length > 0 && (
             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
               {cartItems.length}
@@ -64,14 +61,7 @@ export function Cart() {
       >
         <SheetTitle className="text-2xl font-bold mb-5 text-amber-800 flex items-center gap-2">
           <span className="inline-block p-1">
-            <Avatar className="bg-amber-600 rounded-full p-1 flex items-center justify-center h-9 w-9">
-              <AvatarImage
-                src="/online-shopping.png"
-                alt="Cart"
-                className="h-6 w-6"
-              />
-              <AvatarFallback>Carrinho</AvatarFallback>
-            </Avatar>
+            <ShoppingCart />
           </span>
           Seus Pedidos
         </SheetTitle>
