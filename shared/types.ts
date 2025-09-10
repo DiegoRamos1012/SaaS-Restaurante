@@ -73,7 +73,7 @@ export interface Order {
   tableNumber: number;
   items: OrderItem[];
   total: number;
-  createdAt: Date;
+  createdAt: string; 
 }
 
 export interface Table {

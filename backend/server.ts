@@ -12,6 +12,12 @@ const menuPath = path.join(__dirname, "data/menu.json");
 const ordersPath = path.join(__dirname, "data/orders.json");
 
 // Rotas
+
+// Rota de teste de funcionamento
+app.get("/test", (req, res) => {
+    res.json({ message: "Backend funcionando" })
+});
+
 app.get("/menu", (req, res) => {
   const menu: MenuItem[] = JSON.parse(fs.readFileSync(menuPath, "utf-8"));
   res.json(menu);
@@ -29,7 +35,7 @@ app.post("/orders", (req, res) => {
     tableNumber: req.body.tableNumber,
     items: req.body.items,
     total: req.body.total,
-    createdAt: new Date()
+    createdAt: new Date().toISOString() // <-- aqui
   };
   orders.push(newOrder);
   fs.writeFileSync(ordersPath, JSON.stringify(orders, null, 2));
