@@ -39,6 +39,7 @@ export type CartContextType = {
 };
 
 /*----------------------------------------------------------------------------------------------------------- */
+
 export interface MenuItem {
   id: string;
   name: string;

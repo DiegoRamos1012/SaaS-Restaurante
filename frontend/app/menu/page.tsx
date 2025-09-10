@@ -5,7 +5,7 @@ import { Cart } from "@/components/Cart";
 import { Button } from "@/components/ui/button";
 import { Info, Percent, Plus } from "lucide-react";
 import InfoModal from "@/components/Dialogs/InfoModal";
-import { MenuItem } from "@/types/types";
+import { MenuItem } from "../../../shared/types"
 import { useCart } from "@/contexts/CartContext";
 
 export default function Menu() {
@@ -14,7 +14,7 @@ export default function Menu() {
   const { addToCart } = useCart();
   const categoryMap: Record<string, typeof mockMenuItems> = {};
   mockMenuItems.forEach((item) => {
-    item.categories.forEach((cat) => {
+    item.categories.forEach((cat: string) => {
       if (!categoryMap[cat]) categoryMap[cat] = [];
       categoryMap[cat].push(item);
     });
@@ -113,7 +113,7 @@ export default function Menu() {
                     <div className="mt-auto pt-1 flex justify-between items-center">
                       <div className="flex flex-wrap gap-1">
                         {item.allergens &&
-                          item.allergens.map((allergen) => (
+                          item.allergens.map((allergen: string) => (
                             <span
                               key={allergen}
                               className="inline-block bg-amber-50 text-amber-800 text-[10px] px-1 rounded"

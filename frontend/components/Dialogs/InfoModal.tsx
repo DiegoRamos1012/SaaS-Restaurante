@@ -5,7 +5,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { MenuItem } from "@/types/types";
+import { MenuItem } from "../../../shared/types";
 import { formatCurrency } from "@/utils/format";
 
 interface InfoModalProps {
