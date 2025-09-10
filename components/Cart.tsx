@@ -11,11 +11,15 @@ import {
 import { Button } from "./ui/button";
 import { formatCurrency } from "@/utils/format";
 import { useCart } from "@/contexts/CartContext";
+import { useMemo } from "react";
 
 export function Cart() {
   const { cartItems, removeFromCart, changeQuantity, clearCart } = useCart();
 
-  const cartTotal = cartItems.reduce((sum, item) => sum + item.total, 0);
+  const cartTotal = useMemo(
+    () => cartItems.reduce((sum, item) => sum + item.total, 0),
+    [cartItems]
+  );
 
   return (
     <Sheet>
@@ -130,16 +134,24 @@ export function Cart() {
             </div>
 
             <div className="space-y-3">
-              <Button className="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold py-3 rounded-lg transition-colors text-lg shadow">
+              <Button
+                className="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold py-3 rounded-lg transition-colors text-lg shadow"
+                aria-label="Finalizar Pedido"
+              >
                 Finalizar Pedido
               </Button>
               <SheetClose asChild>
-                <Button className="w-full bg-gray-100 hover:bg-gray-200 text-amber-800 font-semibold py-2 rounded-lg transition-colors text-base">
+                <Button
+                  className="w-full bg-gray-100 hover:bg-gray-200 text-amber-800 font-semibold py-2 rounded-lg transition-colors text-base"
+                  aria-label="Adicionar mais"
+                >
                   Adicionar mais
                 </Button>
               </SheetClose>
+              <hr className="border-t border-amber-300" />
               <Button
                 className="w-full bg-red-100 hover:bg-red-200 text-red-700 font-semibold py-2 rounded-lg transition-colors text-base"
+                aria-label="Limpar carrinho"
                 onClick={() => clearCart()}
               >
                 Limpar carrinho

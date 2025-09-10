@@ -26,8 +26,10 @@ const InfoModal: React.FC<InfoModalProps> = ({ show, onHide, item }) => {
       <DialogContent className="bg-amber-50 max-w-sm sm:max-w-md">
         <DialogHeader>
           <DialogTitle>{item.name}</DialogTitle>
-          <DialogDescription>{item.categories.join(", ")}</DialogDescription>
         </DialogHeader>
+        <DialogDescription>
+          {item.categories.join(", ")}
+        </DialogDescription>
         <div className="flex flex-col gap-3">
           <img
             src={
@@ -63,14 +65,9 @@ const InfoModal: React.FC<InfoModalProps> = ({ show, onHide, item }) => {
               <span className="font-semibold text-xs text-amber-800">
                 Alérgenos:{" "}
               </span>
-              {item.allergens.map((a) => (
-                <span
-                  key={a}
-                  className="inline-block bg-amber-50 text-amber-800 text-[10px] px-1 rounded mr-1"
-                >
-                  {a}
-                </span>
-              ))}
+              <span className="inline-block bg-amber-50 text-amber-800 text-xs px-1 rounded">
+                {item.allergens.join(", ")}
+              </span>
             </div>
           )}
         </div>

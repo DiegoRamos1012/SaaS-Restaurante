@@ -3,7 +3,7 @@ import { mockMenuItems } from "@/data/mockedData";
 import { formatCurrency } from "@/utils/format";
 import { Cart } from "@/components/Cart";
 import { Button } from "@/components/ui/button";
-import { Info, Plus } from "lucide-react";
+import { Info, Percent, Plus } from "lucide-react";
 import InfoModal from "@/components/Dialogs/InfoModal";
 import { MenuItem } from "@/types/types";
 import { useCart } from "@/contexts/CartContext";
@@ -37,7 +37,7 @@ export default function Menu() {
             </div>
           </div>
 
-          <nav className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 mt-3 pb-1 overflow-x-auto whitespace-nowrap px-3 sm:px-0">
+          <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-2 md:mt-3 pb-1 overflow-x-auto whitespace-nowrap px-3 sm:px-0">
             {sections.map(([category], idx) => (
               <React.Fragment key={category}>
                 <a
@@ -64,7 +64,7 @@ export default function Menu() {
             <h3 className="text-lg font-semibold mb-3 pb-1 border-b border-amber-300 text-amber-800">
               {category}
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
               {items.map((item) => (
                 <article
                   key={item.id}
@@ -85,7 +85,7 @@ export default function Menu() {
                     />
                     {item.onSale && (
                       <div className="absolute top-0 left-0 bg-red-500 text-white text-xs px-2 py-0.5 rounded-br">
-                        Oferta
+                        <Percent size={17}/>
                       </div>
                     )}
                   </div>
