@@ -1,0 +1,25 @@
+[
+  {
+    "id": "1",
+    "name": "Hambúrguer Clássico",
+    "description": "Pão, carne, queijo e alface",
+    "image": "hamburguer.png",
+    "price": 20.0,
+    "categories": ["Pratos Principais"],
+    "availability": "Disponível",
+    "preparationTime": 15,
+    "addons": [
+      { "id": "a1", "name": "Bacon", "price": 5.0 },
+      { "id": "a2", "name": "Ovo", "price": 3.0 }
+    ],
+    "allergens": ["Glúten", "Leite"]
+  },
+  {
+    "id": "2",
+    "name": "Suco de Laranja",
+    "description": "Laranja natural",
+    "image": "suco.png",
+    "price": 8.0,
+    "categories": ["Bebidas"]
+  }
+]
