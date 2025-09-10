@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "name": "Hambúrguer",
+    "description": "Delicioso hambúrguer com queijo",
+    "price": 20,
+    "categories": ["Pratos Principais"]
+  },
+  {
+    "id": "2",
+    "name": "Refrigerante",
+    "description": "Coca-Cola 350ml",
+    "price": 5,
+    "categories": ["Bebidas"]
+  }
+]
