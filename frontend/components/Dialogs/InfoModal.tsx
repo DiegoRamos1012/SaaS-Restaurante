@@ -5,7 +5,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { MenuItem } from "../../../shared/types";
+import { MenuItem } from "../../types/types";
 import { formatCurrency } from "@/utils/format";
 
 interface InfoModalProps {
@@ -27,9 +27,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ show, onHide, item }) => {
         <DialogHeader>
           <DialogTitle>{item.name}</DialogTitle>
         </DialogHeader>
-        <DialogDescription>
-          {item.categories.join(", ")}
-        </DialogDescription>
+        <DialogDescription>{item.categories.join(", ")}</DialogDescription>
         <div className="flex flex-col gap-3">
           <img
             src={

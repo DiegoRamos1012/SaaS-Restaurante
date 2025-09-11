@@ -5,7 +5,7 @@ import { Cart } from "@/components/Cart";
 import { Button } from "@/components/ui/button";
 import { Info, Percent, Plus } from "lucide-react";
 import InfoModal from "@/components/Dialogs/InfoModal";
-import { MenuItem } from "../../../shared/types"
+import { MenuItem } from "../../types/types";
 import { useCart } from "@/contexts/CartContext";
 
 export default function Menu() {
@@ -85,7 +85,7 @@ export default function Menu() {
                     />
                     {item.onSale && (
                       <div className="absolute top-0 left-0 bg-red-500 text-white text-xs px-2 py-0.5 rounded-br">
-                        <Percent size={17}/>
+                        <Percent size={17} />
                       </div>
                     )}
                   </div>
