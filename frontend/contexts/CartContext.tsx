@@ -1,40 +1,28 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { CartContextType, CartItem, MenuItem } from "../types/types";
+import { CartContextType, CartItem, MenuItem, Addon } from "../types/types";
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  function addToCart(item: MenuItem) {
-    setCartItems((prev) => {
-      const exists = prev.find((i) => i.menuItemId === item.id);
-      if (exists) {
-        return prev.map((i) =>
-          i.menuItemId === item.id
-            ? {
-                ...i,
-                quantity: i.quantity + 1,
-                total: (i.quantity + 1) * i.unitPrice,
-              }
-            : i
-        );
-      }
-      return [
-        ...prev,
-        {
-          menuItemId: item.id,
-          image: item.image,
-          name: item.name,
-          quantity: 1,
-          unitPrice:
-            item.onSale && item.salePrice ? item.salePrice : item.price,
-          total: item.onSale && item.salePrice ? item.salePrice : item.price,
-        },
-      ];
-    });
+  function addToCart(item: MenuItem, addons?: Addon[]) {
+    const addonsArray = addons ?? [];
+    const addonsTotal = addonsArray.reduce((sum, a) => sum + a.price, 0);
+    setCartItems((prev) => [
+      ...prev,
+      {
+        menuItemId: item.id,
+        image: item.image,
+        name: item.name,
+        quantity: 1,
+        unitPrice: item.price,
+        total: item.price + addonsTotal,
+        addons: addonsArray,
+      },
+    ]);
   }
 
   function removeFromCart(menuItemId: string) {

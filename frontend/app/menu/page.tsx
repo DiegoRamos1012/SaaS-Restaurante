@@ -4,14 +4,18 @@ import { formatCurrency } from "@/utils/format";
 import { Cart } from "@/components/Cart";
 import { Button } from "@/components/ui/button";
 import { Info, Percent, Plus } from "lucide-react";
-import InfoModal from "@/components/Dialogs/InfoModal";
-import { MenuItem } from "../../types/types";
+import { MenuItem, Addon } from "../../types/types";
 import { useCart } from "@/contexts/CartContext";
+import InfoModal from "@/components/Dialogs/InfoModal";
+import AddonsModal from "@/components/Dialogs/AddonsModal";
 
 export default function Menu() {
   const [menu, setMenu] = useState<MenuItem[] | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const [addonsModalVisible, setAddonsModalVisible] = useState(false);
+  const [addonsItem, setAddonsItem] = useState<MenuItem | null>(null);
+  const [allAddons, setAllAddons] = useState<Addon[]>([]);
   const { addToCart } = useCart();
   const categoryMap: Record<string, MenuItem[]> = {};
   if (menu) {
@@ -43,10 +47,19 @@ export default function Menu() {
     getMenu();
   }, []);
 
+  useEffect(() => {
+    async function fetchAddons() {
+      const response = await axios.get("http://localhost:4000/api/addons");
+      setAllAddons(response.data);
+    }
+    fetchAddons();
+  }, []);
+
   if (!menu) {
     return <div className="text-center py-10">Carregando cardápio...</div>;
   }
 
+  // TODO: Implementar feedback visual por Toast
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50">
       <header className="py-3 px-0 sm:px-4 bg-amber-800 text-white sticky top-0 z-10 shadow-md">
@@ -162,7 +175,14 @@ export default function Menu() {
                         <Button
                           className="text-white bg-amber-600 hover:bg-amber-700 rounded-full p-0.5 w-8 h-8 min-w-0 flex transition-colors"
                           aria-label="Adicionar ao Carrinho"
-                          onClick={() => addToCart(item)}
+                          onClick={() => {
+                            if (item.addons && item.addons.length > 0) {
+                              setAddonsItem(item);
+                              setAddonsModalVisible(true);
+                            } else {
+                              addToCart(item);
+                            }
+                          }}
                         >
                           <Plus size={16} />
                         </Button>
@@ -182,6 +202,15 @@ export default function Menu() {
           setSelectedItem(null);
         }}
         item={selectedItem}
+      />
+      <AddonsModal
+        show={addonsModalVisible}
+        onHide={() => {
+          setAddonsModalVisible(false);
+          setAddonsItem(null);
+        }}
+        item={addonsItem}
+        allAddons={allAddons}
       />
       <footer className="bg-amber-800 text-amber-100 py-4 px-4 mt-6">
         <div className="container mx-auto text-center">

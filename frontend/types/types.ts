@@ -27,13 +27,14 @@ export type CartItem = {
   image: string;
   name: string;
   quantity: number;
+  addons?: Addon[];
   unitPrice: number;
   total: number;
 };
 
 export type CartContextType = {
   cartItems: CartItem[];
-  addToCart: (item: MenuItem) => void;
+  addToCart: (item: MenuItem, addons?: Addon[]) => void;
   removeFromCart: (menuItemId: string) => void;
   changeQuantity: (menuItemId: string, delta: number) => void;
   clearCart: () => void;
@@ -51,13 +52,14 @@ export interface MenuItem {
   availability?: string;
   preparationTime?: number;
   isAddonElegible?: boolean;
-  addons?: Addon[];
+  addons?: string[];
   allergens?: Allergen[];
   onSale?: boolean;
   salePrice?: number;
 }
 export interface Addon {
   id: string;
+  image: string
   name: string;
   price: number;
 }

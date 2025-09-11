@@ -20,6 +20,16 @@ router.get("/menu", (req, res) => {
   });
 });
 
+router.get("/addons", (req, res) => {
+  fs.readFile("./data/addons.json", "utf-8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: "Erro ao carregar os acompanhamentos" });
+    }
+    res.json(JSON.parse(data));
+  });
+});
+
+
 router.post("/order", (req, res) => {
   res.json({ message: "Pedido recebido", order: req.body });
 });

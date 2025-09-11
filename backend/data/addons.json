@@ -1,77 +1,92 @@
 [
-    {
-        "id": "1",
-        "name": "Bacon",
-        "price": 5
-    },
-    {
-        "id": "2",
-        "name": "Ovo Frito",
-        "price": 3
-    },
-    {
-        "id": "3",
-        "name": "Queijo Extra",
-        "price": 4
-    },
-    {
-        "id": "4",
-        "name": "Molho Especial",
-        "price": 2
-    },
-    {
-        "id": "5",
-        "name": "Pão Artesanal",
-        "price": 3
-    },
-    {
-        "id": "6",
-        "name": "Cebola Caramelizada",
-        "price": 2
-    },
-    {
-        "id": "7",
-        "name": "Salada Extra",
-        "price": 3
-    },
-    {
-        "id": "8",
-        "name": "Tomate Seco",
-        "price": 4
-    },
-    {
-        "id": "9",
-        "name": "Molho Barbecue",
-        "price": 2
-    },
-    {
-        "id": "10",
-        "name": "Pepperoni",
-        "price": 5
-    },
-    {
-        "id": "11",
-        "name": "Champignon",
-        "price": 4
-    },
-    {
-        "id": "12",
-        "name": "Abacaxi Grelhado",
-        "price": 3
-    },
-    {
-        "id": "13",
-        "name": "Azeitonas Pretas",
-        "price": 2
-    },
-    {
-        "id": "14",
-        "name": "Batata Palha",
-        "price": 3
-    },
-    {
-        "id": "15",
-        "name": "Maionese Especial",
-        "price": 2
-    }
+  {
+    "id": "1",
+    "name": "Bacon",
+    "price": 5,
+    "image": "https://picsum.photos/seed/bacon/200/200"
+  },
+  {
+    "id": "2",
+    "name": "Ovo Frito",
+    "price": 3,
+    "image": "https://picsum.photos/seed/ovo/200/200"
+  },
+  {
+    "id": "3",
+    "name": "Queijo Extra",
+    "price": 4,
+    "image": "https://picsum.photos/seed/queijo/200/200"
+  },
+  {
+    "id": "4",
+    "name": "Molho Especial",
+    "price": 2,
+    "image": "https://picsum.photos/seed/molho/200/200"
+  },
+  {
+    "id": "5",
+    "name": "Pão Artesanal",
+    "price": 3,
+    "image": "https://picsum.photos/seed/pao/200/200"
+  },
+  {
+    "id": "6",
+    "name": "Cebola Caramelizada",
+    "price": 2,
+    "image": "https://picsum.photos/seed/cebola/200/200"
+  },
+  {
+    "id": "7",
+    "name": "Salada Extra",
+    "price": 3,
+    "image": "https://picsum.photos/seed/salada/200/200"
+  },
+  {
+    "id": "8",
+    "name": "Tomate Seco",
+    "price": 4,
+    "image": "https://picsum.photos/seed/tomate/200/200"
+  },
+  {
+    "id": "9",
+    "name": "Molho Barbecue",
+    "price": 2,
+    "image": "https://picsum.photos/seed/barbecue/200/200"
+  },
+  {
+    "id": "10",
+    "name": "Pepperoni",
+    "price": 5,
+    "image": "https://picsum.photos/seed/pepperoni/200/200"
+  },
+  {
+    "id": "11",
+    "name": "Champignon",
+    "price": 4,
+    "image": "https://picsum.photos/seed/champignon/200/200"
+  },
+  {
+    "id": "12",
+    "name": "Abacaxi Grelhado",
+    "price": 3,
+    "image": "https://picsum.photos/seed/abacaxi/200/200"
+  },
+  {
+    "id": "13",
+    "name": "Azeitonas Pretas",
+    "price": 2,
+    "image": "https://picsum.photos/seed/azeitonas/200/200"
+  },
+  {
+    "id": "14",
+    "name": "Batata Palha",
+    "price": 3,
+    "image": "https://picsum.photos/seed/batata/200/200"
+  },
+  {
+    "id": "15",
+    "name": "Maionese Especial",
+    "price": 2,
+    "image": "https://picsum.photos/seed/maionese/200/200"
+  }
 ]
