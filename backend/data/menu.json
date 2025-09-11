@@ -9,7 +9,8 @@
     "addons": [
       { "id": "a1", "name": "Bacon", "price": 5 },
       { "id": "a2", "name": "Ovo", "price": 3 }
-    ]
+    ],
+    "image": "https://picsum.photos/200/200?random=1"
   },
   {
     "id": "2",
@@ -18,7 +19,8 @@
     "price": 18,
     "categories": ["Pratos Principais"],
     "allergens": [],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=2"
   },
   {
     "id": "3",
@@ -27,7 +29,8 @@
     "price": 25,
     "categories": ["Pratos Principais"],
     "allergens": ["Leite", "Glúten"],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=3"
   },
   {
     "id": "4",
@@ -36,7 +39,8 @@
     "price": 15,
     "categories": ["Pratos Principais"],
     "allergens": ["Leite"],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=4"
   },
   {
     "id": "5",
@@ -45,7 +49,8 @@
     "price": 28,
     "categories": ["Pratos Principais"],
     "allergens": ["Glúten", "Leite"],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=5"
   },
   {
     "id": "6",
@@ -54,7 +59,8 @@
     "price": 5,
     "categories": ["Bebidas"],
     "allergens": [],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=6"
   },
   {
     "id": "7",
@@ -63,7 +69,8 @@
     "price": 7,
     "categories": ["Bebidas"],
     "allergens": [],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=7"
   },
   {
     "id": "8",
@@ -72,7 +79,8 @@
     "price": 3,
     "categories": ["Bebidas"],
     "allergens": [],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=8"
   },
   {
     "id": "9",
@@ -81,7 +89,8 @@
     "price": 8,
     "categories": ["Bebidas"],
     "allergens": [],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=9"
   },
   {
     "id": "10",
@@ -90,7 +99,8 @@
     "price": 5,
     "categories": ["Bebidas"],
     "allergens": [],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=10"
   },
   {
     "id": "11",
@@ -99,7 +109,8 @@
     "price": 4,
     "categories": ["Sobremesas"],
     "allergens": ["Leite"],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=11"
   },
   {
     "id": "12",
@@ -108,7 +119,8 @@
     "price": 6,
     "categories": ["Sobremesas"],
     "allergens": ["Leite", "Ovos"],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=12"
   },
   {
     "id": "13",
@@ -117,7 +129,8 @@
     "price": 5,
     "categories": ["Sobremesas"],
     "allergens": ["Leite"],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=13"
   },
   {
     "id": "14",
@@ -126,7 +139,8 @@
     "price": 7,
     "categories": ["Sobremesas"],
     "allergens": [],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=14"
   },
   {
     "id": "15",
@@ -135,7 +149,8 @@
     "price": 8,
     "categories": ["Sobremesas"],
     "allergens": ["Glúten", "Leite"],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=15"
   },
   {
     "id": "16",
@@ -144,7 +159,8 @@
     "price": 10,
     "categories": ["Acompanhamentos"],
     "allergens": [],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=16"
   },
   {
     "id": "17",
@@ -153,7 +169,8 @@
     "price": 5,
     "categories": ["Acompanhamentos"],
     "allergens": [],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=17"
   },
   {
     "id": "18",
@@ -162,7 +179,8 @@
     "price": 6,
     "categories": ["Acompanhamentos"],
     "allergens": [],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=18"
   },
   {
     "id": "19",
@@ -171,7 +189,8 @@
     "price": 7,
     "categories": ["Acompanhamentos"],
     "allergens": ["Leite"],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=19"
   },
   {
     "id": "20",
@@ -180,51 +199,7 @@
     "price": 8,
     "categories": ["Acompanhamentos"],
     "allergens": [],
-    "addons": []
-  },
-  {
-    "id": "21",
-    "name": "Salada Verde",
-    "description": "Alface, rúcula e agrião",
-    "price": 12,
-    "categories": ["Entradas"],
-    "allergens": [],
-    "addons": []
-  },
-  {
-    "id": "22",
-    "name": "Ceviche",
-    "description": "Peixe fresco com limão e cebola",
-    "price": 18,
-    "categories": ["Entradas"],
-    "allergens": ["Camarão"],
-    "addons": []
-  },
-  {
-    "id": "23",
-    "name": "Bruschetta",
-    "description": "Pão com tomate e manjericão",
-    "price": 14,
-    "categories": ["Entradas"],
-    "allergens": ["Glúten"],
-    "addons": []
-  },
-  {
-    "id": "24",
-    "name": "Sopa de Legumes",
-    "description": "Sopa leve e saudável",
-    "price": 10,
-    "categories": ["Entradas"],
-    "allergens": [],
-    "addons": []
-  },
-  {
-    "id": "25",
-    "name": "Mix de Frios",
-    "description": "Queijos e embutidos variados",
-    "price": 22,
-    "categories": ["Entradas"],
-    "allergens": ["Leite"],
-    "addons": []
+    "addons": [],
+    "image": "https://picsum.photos/200/200?random=20"
   }
 ]

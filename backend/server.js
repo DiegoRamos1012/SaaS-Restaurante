@@ -9,20 +9,23 @@ const PORT = 4000;
 app.use(cors());
 app.use(express.json());
 
-// Rota de teste
-app.get("/", (req, res) => {
-  res.json({ message: "Backend do restaurante funcionando 🚀" });
-});
+const router = express.Router();
 
-// Rota para ler o menu (menu.json na pasta backend)
-app.get("/menu", (req, res) => {
-  fs.readFile("./menu.json", "utf-8", (err, data) => {
+router.get("/menu", (req, res) => {
+  fs.readFile("./data/menu.json", "utf-8", (err, data) => {
     if (err) {
       return res.status(500).json({ error: "Erro ao carregar o menu" });
     }
     res.json(JSON.parse(data));
   });
 });
+
+router.post("/order", (req, res) => {
+  res.json({ message: "Pedido recebido", order: req.body });
+});
+
+// aplica /api em todas as rotas acima
+app.use("/api", router);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);

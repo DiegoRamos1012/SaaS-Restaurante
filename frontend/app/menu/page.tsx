@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { mockMenuItems } from "@/data/mockedData";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { formatCurrency } from "@/utils/format";
 import { Cart } from "@/components/Cart";
 import { Button } from "@/components/ui/button";
@@ -9,17 +9,43 @@ import { MenuItem } from "../../types/types";
 import { useCart } from "@/contexts/CartContext";
 
 export default function Menu() {
+  const [menu, setMenu] = useState<MenuItem[] | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const { addToCart } = useCart();
-  const categoryMap: Record<string, typeof mockMenuItems> = {};
-  mockMenuItems.forEach((item) => {
-    item.categories.forEach((cat: string) => {
-      if (!categoryMap[cat]) categoryMap[cat] = [];
-      categoryMap[cat].push(item);
+  const categoryMap: Record<string, MenuItem[]> = {};
+  if (menu) {
+    menu.forEach((item) => {
+      item.categories.forEach((cat: string) => {
+        if (!categoryMap[cat]) categoryMap[cat] = [];
+        categoryMap[cat].push(item);
+      });
     });
-  });
+  }
   const sections = Object.entries(categoryMap);
+
+  useEffect(() => {
+    async function getMenu() {
+      try {
+        const response = await axios.get("http://localhost:4000/api/menu", {
+          timeout: 5000,
+        });
+        setMenu(response.data);
+        const menuNames = response.data.map((item: MenuItem) => item.name);
+        console.log(menuNames);
+        if (response.status === 200) {
+          console.log("Cardápio buscado com sucesso");
+        }
+      } catch (err) {
+        console.error(`Erro: ${err}`);
+      }
+    }
+    getMenu();
+  }, []);
+
+  if (!menu) {
+    return <div className="text-center py-10">Carregando cardápio...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50">
