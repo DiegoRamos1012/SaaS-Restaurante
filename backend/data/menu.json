@@ -6,10 +6,7 @@
     "price": 20,
     "categories": ["Pratos Principais"],
     "allergens": ["Glúten", "Leite"],
-    "addons": [
-      { "id": "a1", "name": "Bacon", "price": 5 },
-      { "id": "a2", "name": "Ovo", "price": 3 }
-    ],
+    "addons": ["1", "2", "3", "6", "9"],
     "image": "https://picsum.photos/200/200?random=1"
   },
   {
@@ -19,7 +16,7 @@
     "price": 18,
     "categories": ["Pratos Principais"],
     "allergens": [],
-    "addons": [],
+    "addons": ["4", "7", "12"],
     "image": "https://picsum.photos/200/200?random=2"
   },
   {
@@ -29,7 +26,7 @@
     "price": 25,
     "categories": ["Pratos Principais"],
     "allergens": ["Leite", "Glúten"],
-    "addons": [],
+    "addons": ["3", "11", "13"],
     "image": "https://picsum.photos/200/200?random=3"
   },
   {
@@ -49,7 +46,7 @@
     "price": 28,
     "categories": ["Pratos Principais"],
     "allergens": ["Glúten", "Leite"],
-    "addons": [],
+    "addons": ["3", "8", "10", "11", "13"],
     "image": "https://picsum.photos/200/200?random=5"
   },
   {
@@ -159,7 +156,7 @@
     "price": 10,
     "categories": ["Acompanhamentos"],
     "allergens": [],
-    "addons": [],
+    "addons": ["14", "15"],
     "image": "https://picsum.photos/200/200?random=16"
   },
   {

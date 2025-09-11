@@ -62,8 +62,7 @@ export function Cart() {
                   className="flex items-center py-4 gap-3"
                 >
                   <img
-                    src="https://placehold.co/300x300/FFF8E1/cc7000?text=Item"
-                    alt={item.name}
+                    src={item.image}
                     className="w-16 h-16 rounded-lg object-cover border"
                   />
                   <div className="flex-1 min-w-0">

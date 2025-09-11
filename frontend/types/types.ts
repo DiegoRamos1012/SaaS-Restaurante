@@ -24,6 +24,7 @@ export type MenuSection = {
 
 export type CartItem = {
   menuItemId: string;
+  image: string;
   name: string;
   quantity: number;
   unitPrice: number;
@@ -49,10 +50,16 @@ export interface MenuItem {
   categories: string[];
   availability?: string;
   preparationTime?: number;
-  addons?: { id: string; name: string; price?: number }[];
+  isAddonElegible?: boolean;
+  addons?: Addon[];
   allergens?: Allergen[];
   onSale?: boolean;
   salePrice?: number;
+}
+export interface Addon {
+  id: string;
+  name: string;
+  price: number;
 }
 
 export interface OrderItem {

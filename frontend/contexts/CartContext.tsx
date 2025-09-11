@@ -26,6 +26,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         ...prev,
         {
           menuItemId: item.id,
+          image: item.image,
           name: item.name,
           quantity: 1,
           unitPrice:
