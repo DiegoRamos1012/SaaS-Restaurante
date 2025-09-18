@@ -29,30 +29,58 @@ export default function Menu() {
   const sections = Object.entries(categoryMap);
 
   useEffect(() => {
-    async function getMenu() {
+    const controller = new AbortController();
+
+    async function loadAllData() {
       try {
-        const response = await axios.get("http://localhost:4000/api/menu", {
-          timeout: 5000,
-        });
-        setMenu(response.data);
-        const menuNames = response.data.map((item: MenuItem) => item.name);
-        console.log(menuNames);
-        if (response.status === 200) {
-          console.log("Cardápio buscado com sucesso");
+        /* O Promise.allSettled executa cada promise (operações assíncronas onde esperamos 
+        receber algo) em paralelo e aguarda todos terminarem independente de sucesso ou falha, 
+        diferente do Promise.all() que, se uma der erro, todas irão falhar*/
+        const [menuResponse, addonsResponse] = await Promise.allSettled([
+          axios.get("http://localhost:4000/api/menu", {
+            signal: controller.signal,
+            timeout: 5000,
+          }),
+          axios.get("http://localhost:4000/api/addons", {
+            signal: controller.signal,
+            timeout: 5000,
+          }),
+        ]);
+
+        // Processa resultados
+        const results = [];
+
+        if (menuResponse.status === "fulfilled") {
+          setMenu(menuResponse.value.data);
+          results.push("✅ Cardápio");
+        } else {
+          results.push("❌ Cardápio");
+          if (!axios.isCancel(menuResponse.reason)) {
+            console.error("Menu error:", menuResponse.reason);
+          }
         }
+
+        if (addonsResponse.status === "fulfilled") {
+          setAllAddons(addonsResponse.value.data);
+          results.push("✅ Acompanhamentos");
+        } else {
+          results.push("❌ Acompanhamentos");
+          if (!axios.isCancel(addonsResponse.reason)) {
+            console.error("Addons error:", addonsResponse.reason);
+          }
+        }
+
+        /* Esse formato de Log nos ajuda a ver com clareza o 
+        resultado das operações Get do menu e addons */
+        console.log("Resultado das requisições:", results.join(" | "));
       } catch (err) {
-        console.error(`Erro: ${err}`);
+        if (axios.isCancel(err)) return;
+        console.error("Erro inesperado:", err);
       }
     }
-    getMenu();
-  }, []);
 
-  useEffect(() => {
-    async function fetchAddons() {
-      const response = await axios.get("http://localhost:4000/api/addons");
-      setAllAddons(response.data);
-    }
-    fetchAddons();
+    loadAllData();
+    return () => controller.abort();
   }, []);
 
   if (!menu) {

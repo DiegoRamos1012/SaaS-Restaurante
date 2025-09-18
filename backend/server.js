@@ -8,16 +8,6 @@ const PORT = 4000;
 // Middlewares
 app.use(cors());
 app.use(express.json());
-
-// Adiciona um header CSP permitindo conexões ao backend
-app.use((req, res, next) => {
-  res.setHeader(
-    "Content-Security-Policy",
-    "default-src 'self'; connect-src 'self' http://localhost:4000"
-  );
-  next();
-});
-
 const router = express.Router();
 
 router.get("/", (req, res) => {

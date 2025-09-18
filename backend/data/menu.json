@@ -7,11 +7,11 @@
     "categories": ["Pratos Principais"],
     "allergens": ["Glúten", "Leite"],
     "addons": [
-      { "id": "1", "name": "Bacon", "price": 5 },
-      { "id": "2", "name": "Ovo Frito", "price": 3 },
-      { "id": "3", "name": "Queijo Extra", "price": 4 },
-      { "id": "6", "name": "Cebola Caramelizada", "price": 2 },
-      { "id": "9", "name": "Molho Barbecue", "price": 2 }
+      { "id": "1" },
+      { "id": "2" },
+      { "id": "3" },
+      { "id": "6" },
+      { "id": "9" }
     ],
     "image": "https://picsum.photos/200/200?random=1"
   },
@@ -22,11 +22,7 @@
     "price": 18,
     "categories": ["Pratos Principais"],
     "allergens": [],
-    "addons": [
-      { "id": "4", "name": "Molho Especial", "price": 2 },
-      { "id": "7", "name": "Salada Extra", "price": 3 },
-      { "id": "12", "name": "Abacaxi Grelhado", "price": 3 }
-    ],
+    "addons": [{ "id": "4" }, { "id": "7" }, { "id": "12" }],
     "image": "https://picsum.photos/200/200?random=2"
   },
   {
@@ -36,11 +32,7 @@
     "price": 25,
     "categories": ["Pratos Principais"],
     "allergens": ["Leite", "Glúten"],
-    "addons": [
-      { "id": "3", "name": "Queijo Extra", "price": 4 },
-      { "id": "11", "name": "Champignon", "price": 4 },
-      { "id": "13", "name": "Azeitonas Pretas", "price": 2 }
-    ],
+    "addons": [{ "id": "3" }, { "id": "11" }, { "id": "13" }],
     "image": "https://picsum.photos/200/200?random=3"
   },
   {
@@ -61,11 +53,11 @@
     "categories": ["Pratos Principais"],
     "allergens": ["Glúten", "Leite"],
     "addons": [
-      { "id": "3", "name": "Queijo Extra", "price": 4 },
-      { "id": "8", "name": "Tomate Seco", "price": 4 },
-      { "id": "10", "name": "Pepperoni", "price": 5 },
-      { "id": "11", "name": "Champignon", "price": 4 },
-      { "id": "13", "name": "Azeitonas Pretas", "price": 2 }
+      { "id": "3" },
+      { "id": "8" },
+      { "id": "10" },
+      { "id": "11" },
+      { "id": "13" }
     ],
     "image": "https://picsum.photos/200/200?random=5"
   },
@@ -176,10 +168,7 @@
     "price": 10,
     "categories": ["Acompanhamentos"],
     "allergens": [],
-    "addons": [
-      { "id": "14", "name": "Batata Palha", "price": 3 },
-      { "id": "15", "name": "Maionese Especial", "price": 2 }
-    ],
+    "addons": [{ "id": "14" }, { "id": "15" }],
     "image": "https://picsum.photos/200/200?random=16"
   },
   {

@@ -59,7 +59,7 @@ export function Cart() {
               {cartItems.map((item) => (
                 <div
                   key={item.menuItemId}
-                  className="flex items-center py-4 gap-3"
+                  className="flex items-start py-4 gap-3"
                 >
                   <img
                     src={item.image}
@@ -69,6 +69,25 @@ export function Cart() {
                     <div className="font-semibold text-gray-800 truncate">
                       {item.name}
                     </div>
+
+                    {/* Exibir addons se existirem */}
+                    {item.addons && item.addons.length > 0 && (
+                      <div className="mt-1 space-y-1">
+                        {item.addons.map((addon, index) => (
+                          <div
+                            key={index}
+                            className="text-xs text-gray-600 flex items-center gap-1"
+                          >
+                            <span>+</span>
+                            <span>{addon.name}</span>
+                            <span className="text-amber-600 font-medium">
+                              {formatCurrency(addon.price)}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
                     <div className="flex items-center mt-2 gap-2">
                       <Button
                         size="icon"

@@ -15,8 +15,8 @@ import { Minus, Plus } from "lucide-react";
 interface AddonsModalProps {
   show: boolean;
   onHide: () => void;
-  item: MenuItem | null; // O item do menu selecionado
-  allAddons: Addon[]; // Todos os addons disponíveis (do JSON)
+  item: MenuItem | null;
+  allAddons: Addon[];
 }
 
 const AddonsModal: React.FC<AddonsModalProps> = ({
@@ -32,11 +32,12 @@ const AddonsModal: React.FC<AddonsModalProps> = ({
     if (!show) setSelectedAddons([]);
   }, [show]);
 
+  // Return condicional DEPOIS de todos os hooks
   if (!item || !item.addons || item.addons.length === 0) return null;
 
   // Filtra os addons elegíveis para o item
   const eligibleAddons = allAddons.filter((addon) =>
-    item.addons?.includes(addon.id)
+    item.addons?.some((itemAddon: any) => itemAddon.id === addon.id)
   );
 
   const handleAddAddon = (addon: Addon) => {
