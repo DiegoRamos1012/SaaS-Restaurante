@@ -26,7 +26,7 @@ const AddonsModal: React.FC<AddonsModalProps> = ({
   item,
   allAddons,
 }) => {
-  const { addToCart } = useCart();
+  const { addToCart, cartItems } = useCart();
   const [selectedAddons, setSelectedAddons] = useState<Addon[]>([]);
 
   useEffect(() => {
@@ -52,6 +52,33 @@ const AddonsModal: React.FC<AddonsModalProps> = ({
   };
 
   const handleAddToCart = () => {
+    // Verificar se já existe no carrinho com os mesmos acompanhamentos
+    const existingItem = cartItems.find((cartItem) => {
+      if (cartItem.menuItemId !== item.id) return false;
+      
+      // Comparar acompanhamentos
+      const cartAddons = cartItem.addons || [];
+      
+      if (cartAddons.length !== selectedAddons.length) return false;
+      
+      // Verificar se todos os addons são iguais
+      return selectedAddons.every(addon => 
+        cartAddons.some(cartAddon => cartAddon.id === addon.id)
+      );
+    });
+
+    if (existingItem) {
+      const addonsText = selectedAddons.length > 0 
+        ? ` com os mesmos acompanhamentos` 
+        : ` sem acompanhamentos`;
+      
+      toast.warning(`${item.name}${addonsText} já está no carrinho!`, {
+        description: "Use os botões do carrinho para alterar a quantidade.",
+        duration: 3000,
+      });
+      return;
+    }
+
     addToCart(item, selectedAddons);
 
     // Toast notification

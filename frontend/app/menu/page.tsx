@@ -17,7 +17,7 @@ export default function Menu() {
   const [addonsModalVisible, setAddonsModalVisible] = useState(false);
   const [addonsItem, setAddonsItem] = useState<MenuItem | null>(null);
   const [allAddons, setAllAddons] = useState<Addon[]>([]);
-  const { addToCart } = useCart();
+  const { addToCart, cartItems } = useCart();
   const categoryMap: Record<string, MenuItem[]> = {};
   if (menu) {
     menu.forEach((item) => {
@@ -202,15 +202,35 @@ export default function Menu() {
                         </Button>
                         <Button
                           className="text-white bg-amber-600 hover:bg-amber-700 rounded-full p-0.5 w-8 h-8 min-w-0 flex transition-colors"
-                          aria-label="Adicionar ao Carrinho"
+                          aria-label="Adicionar ao Pedido"
                           onClick={() => {
                             if (item.addons && item.addons.length > 0) {
                               setAddonsItem(item);
                               setAddonsModalVisible(true);
                             } else {
+                              // Verificar se o item já existe no carrinho (sem acompanhamentos)
+                              const itemExists = cartItems.some(
+                                (cartItem) =>
+                                  cartItem.menuItemId === item.id &&
+                                  (!cartItem.addons ||
+                                    cartItem.addons.length === 0)
+                              );
+
+                              if (itemExists) {
+                                toast.warning(
+                                  `${item.name} já está no seu pedido!`,
+                                  {
+                                    description:
+                                      "Use os botões no menu do pedido para alterar a quantidade.",
+                                    duration: 3000,
+                                  }
+                                );
+                                return;
+                              }
+
                               addToCart(item);
                               toast.success(
-                                `${item.name} adicionado ao carrinho!`,
+                                `${item.name} adicionado ao seu pedido!`,
                                 {
                                   duration: 3000,
                                 }
@@ -236,6 +256,7 @@ export default function Menu() {
           setSelectedItem(null);
         }}
         item={selectedItem}
+        allAddons={allAddons}
       />
       <AddonsModal
         show={addonsModalVisible}

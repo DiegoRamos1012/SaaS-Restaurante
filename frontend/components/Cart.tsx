@@ -131,19 +131,9 @@ export function Cart() {
             </div>
 
             <div className="border-t border-amber-200 pt-4 mb-6">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-gray-600">Subtotal</span>
-                <span className="font-medium text-gray-800">
-                  {formatCurrency(cartTotal)}
-                </span>
-              </div>
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-gray-600">Taxa de entrega</span>
-                <span className="font-medium text-gray-800">Grátis</span>
-              </div>
               <div className="flex justify-between items-center pt-2 border-t border-dashed border-amber-100">
                 <span className="text-lg font-semibold text-gray-800">
-                  Total
+                  Total do pedido:
                 </span>
                 <span className="text-xl font-bold text-amber-800">
                   {formatCurrency(cartTotal)}

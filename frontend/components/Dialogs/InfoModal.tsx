@@ -5,17 +5,30 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { MenuItem } from "../../types/types";
+import { MenuItem, Addon } from "../../types/types";
 import { formatCurrency } from "@/utils/format";
 
 interface InfoModalProps {
   show: boolean;
   onHide: () => void;
   item: MenuItem | null;
+  allAddons?: Addon[];
 }
 
-const InfoModal: React.FC<InfoModalProps> = ({ show, onHide, item }) => {
+const InfoModal: React.FC<InfoModalProps> = ({
+  show,
+  onHide,
+  item,
+  allAddons,
+}) => {
   if (!item) return null;
+
+  // Filtra os addons disponíveis para este item
+  const availableAddons =
+    allAddons?.filter((addon) =>
+      item.addons?.some((itemAddon: any) => itemAddon.id === addon.id)
+    ) || [];
+
   return (
     <Dialog
       open={show}
@@ -23,7 +36,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ show, onHide, item }) => {
         if (!open) onHide();
       }}
     >
-      <DialogContent className="bg-amber-50 max-w-sm sm:max-w-md">
+      <DialogContent className="bg-amber-50 max-w-sm sm:max-w-md max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{item.name}</DialogTitle>
         </DialogHeader>
@@ -58,6 +71,33 @@ const InfoModal: React.FC<InfoModalProps> = ({ show, onHide, item }) => {
               </span>
             )}
           </div>
+
+          {/* Acompanhamentos disponíveis */}
+          {availableAddons.length > 0 && (
+            <div className="mt-3 border-t border-amber-200 pt-3">
+              <h4 className="font-semibold text-amber-800 text-sm mb-2">
+                Acompanhamentos Disponíveis:
+              </h4>
+              <div className="space-y-2">
+                {availableAddons.map((addon) => (
+                  <div
+                    key={addon.id}
+                    className="flex justify-between items-center bg-white rounded-lg p-2 border border-amber-100"
+                  >
+                    <div className="flex-1">
+                      <span className="text-sm font-medium text-gray-800">
+                        {addon.name}
+                      </span>
+                    </div>
+                    <span className="text-sm font-semibold text-amber-700 ml-2">
+                      + {formatCurrency(addon.price)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {item.allergens && item.allergens.length > 0 && (
             <div className="mt-2">
               <span className="font-semibold text-xs text-amber-800">
