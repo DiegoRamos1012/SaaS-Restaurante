@@ -10,7 +10,6 @@ console.log("📅 Data/Hora:", new Date().toLocaleString("pt-BR"));
 console.log("🌍 Ambiente:", process.env.NODE_ENV);
 console.log("🔧 Versão Node:", process.version);
 console.log("⚡ Versão do Next.js:", require("next/package.json").version);
-console.log("🔧 Versão Node:", process.version);
 console.log(
   "🔗 API Backend:",
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"

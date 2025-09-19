@@ -8,6 +8,7 @@ import { MenuItem, Addon } from "../../types/types";
 import { useCart } from "@/contexts/CartContext";
 import InfoModal from "@/components/Dialogs/InfoModal";
 import AddonsModal from "@/components/Dialogs/AddonsModal";
+import { toast } from "sonner";
 
 export default function Menu() {
   const [menu, setMenu] = useState<MenuItem[] | null>(null);
@@ -87,7 +88,6 @@ export default function Menu() {
     return <div className="text-center py-10">Carregando cardápio...</div>;
   }
 
-  // TODO: Implementar feedback visual por Toast
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50">
       <header className="py-3 px-0 sm:px-4 bg-amber-800 text-white sticky top-0 z-10 shadow-md">
@@ -209,6 +209,12 @@ export default function Menu() {
                               setAddonsModalVisible(true);
                             } else {
                               addToCart(item);
+                              toast.success(
+                                `${item.name} adicionado ao carrinho!`,
+                                {
+                                  duration: 3000,
+                                }
+                              );
                             }
                           }}
                         >

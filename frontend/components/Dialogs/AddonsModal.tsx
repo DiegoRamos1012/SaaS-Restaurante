@@ -11,6 +11,7 @@ import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import React, { useState, useEffect } from "react";
 import { Minus, Plus } from "lucide-react";
+import { toast } from "sonner";
 
 interface AddonsModalProps {
   show: boolean;
@@ -52,6 +53,25 @@ const AddonsModal: React.FC<AddonsModalProps> = ({
 
   const handleAddToCart = () => {
     addToCart(item, selectedAddons);
+
+    // Toast notification
+    const addonsText =
+      selectedAddons.length > 0
+        ? ` com ${selectedAddons.length} acompanhamento${
+            selectedAddons.length > 1 ? "s" : ""
+          }`
+        : "";
+
+    toast.success(`${item.name}${addonsText} adicionado ao carrinho!`, {
+      description:
+        selectedAddons.length > 0
+          ? `Acompanhamentos: ${selectedAddons
+              .map((addon) => addon.name)
+              .join(", ")}`
+          : undefined,
+      duration: 3000,
+    });
+
     onHide();
     setSelectedAddons([]);
   };
