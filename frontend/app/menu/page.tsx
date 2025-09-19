@@ -3,7 +3,8 @@ import axios from "axios";
 import { formatCurrency } from "@/utils/format";
 import { Cart } from "@/components/Cart";
 import { Button } from "@/components/ui/button";
-import { Info, Percent, Plus } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { Info, Percent, Plus, ChefHat } from "lucide-react";
 import { MenuItem, Addon } from "../../types/types";
 import { useCart } from "@/contexts/CartContext";
 import InfoModal from "@/components/Dialogs/InfoModal";
@@ -17,6 +18,7 @@ export default function Menu() {
   const [addonsModalVisible, setAddonsModalVisible] = useState(false);
   const [addonsItem, setAddonsItem] = useState<MenuItem | null>(null);
   const [allAddons, setAllAddons] = useState<Addon[]>([]);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const { addToCart, cartItems } = useCart();
   const categoryMap: Record<string, MenuItem[]> = {};
   if (menu) {
@@ -34,9 +36,13 @@ export default function Menu() {
 
     async function loadAllData() {
       try {
-        /* O Promise.allSettled executa cada promise (operações assíncronas onde esperamos 
-        receber algo) em paralelo e aguarda todos terminarem independente de sucesso ou falha, 
+        setLoadingProgress(10);
+
+        /* O Promise.allSettled executa cada promise (operações assíncronas onde esperamos
+        receber algo) em paralelo e aguarda todos terminarem independente de sucesso ou falha,
         diferente do Promise.all() que, se uma der erro, todas irão falhar*/
+        setLoadingProgress(30);
+
         const [menuResponse, addonsResponse] = await Promise.allSettled([
           axios.get("http://localhost:4000/api/menu", {
             signal: controller.signal,
@@ -47,6 +53,8 @@ export default function Menu() {
             timeout: 5000,
           }),
         ]);
+
+        setLoadingProgress(70);
 
         // Processa resultados
         const results = [];
@@ -71,7 +79,9 @@ export default function Menu() {
           }
         }
 
-        /* Esse formato de Log nos ajuda a ver com clareza o 
+        setLoadingProgress(100);
+
+        /* Esse formato de Log nos ajuda a ver com clareza o
         resultado das operações Get do menu e addons */
         console.log("Resultado das requisições:", results.join(" | "));
       } catch (err) {
@@ -85,7 +95,40 @@ export default function Menu() {
   }, []);
 
   if (!menu) {
-    return <div className="text-center py-10">Carregando cardápio...</div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50 flex items-center justify-center">
+        <div className="w-full max-w-md mx-auto px-6">
+          <div className="bg-white rounded-lg shadow-lg p-8 text-center">
+            <div className="mb-6">
+              <ChefHat className="mx-auto h-16 w-16 text-amber-600 animate-pulse" />
+            </div>
+
+            <h2 className="text-2xl font-bold text-amber-800 mb-2">
+              Le Gourmet
+            </h2>
+
+            <p className="text-amber-600 mb-6 text-sm">
+              Preparando nosso cardápio especial para você...
+            </p>
+
+            <div className="space-y-3">
+              <Progress value={loadingProgress} className="w-full h-2" />
+
+              <div className="flex justify-between text-xs text-amber-700">
+                <span>Carregando pratos</span>
+                <span>{loadingProgress}%</span>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-center space-x-1">
+              <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce"></div>
+              <div className="w-2 h-2 bg-amber-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+              <div className="w-2 h-2 bg-amber-600 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
