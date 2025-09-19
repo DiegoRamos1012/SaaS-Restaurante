@@ -43,20 +43,22 @@ const InfoModal: React.FC<InfoModalProps> = ({
         </DialogHeader>
         <DialogDescription>{item.categories.join(", ")}</DialogDescription>
         <div className="flex flex-col gap-3">
-          <Image
-            src={
-              item.image ||
-              "https://placehold.co/600x400/FFF8E1/cc7000?text=Le+Gourmet"
-            }
-            alt={item.name}
-            width={600}
-            height={192}
-            className="w-full h-48 object-cover rounded"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).src =
-                "https://placehold.co/600x400/FFF8E1/cc7000?text=Le+Gourmet";
-            }}
-          />
+          <div className="relative w-full h-48 rounded overflow-hidden">
+            <Image
+              src={
+                item.image ||
+                "https://placehold.co/600x400/FFF8E1/cc7000?text=Le+Gourmet"
+              }
+              alt={item.name}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src =
+                  "https://placehold.co/600x400/FFF8E1/cc7000?text=Le+Gourmet";
+              }}
+            />
+          </div>
           <div className="text-gray-700 text-sm mb-2">{item.description}</div>
           <div className="flex items-center gap-2">
             {item.onSale && item.salePrice ? (
@@ -89,18 +91,20 @@ const InfoModal: React.FC<InfoModalProps> = ({
                   >
                     <div className="flex items-center flex-1 gap-2">
                       {addon.image && (
-                        <Image
-                          src={addon.image}
-                          alt={addon.name}
-                          width={32}
-                          height={32}
-                          className="w-8 h-8 object-cover rounded"
-                          onError={(e) => {
-                            (
-                              e.currentTarget as HTMLImageElement
-                            ).style.display = "none";
-                          }}
-                        />
+                        <div className="relative w-8 h-8 rounded overflow-hidden flex-shrink-0">
+                          <Image
+                            src={addon.image}
+                            alt={addon.name}
+                            fill
+                            sizes="32px"
+                            className="object-cover"
+                            onError={(e) => {
+                              (
+                                e.currentTarget as HTMLImageElement
+                              ).style.display = "none";
+                            }}
+                          />
+                        </div>
                       )}
                       <div>
                         <span className="text-sm font-medium text-gray-800">
