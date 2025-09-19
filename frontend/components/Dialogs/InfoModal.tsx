@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { MenuItem, Addon } from "../../types/types";
 import { formatCurrency } from "@/utils/format";
+import Image from "next/image";
 
 interface InfoModalProps {
   show: boolean;
@@ -42,12 +43,14 @@ const InfoModal: React.FC<InfoModalProps> = ({
         </DialogHeader>
         <DialogDescription>{item.categories.join(", ")}</DialogDescription>
         <div className="flex flex-col gap-3">
-          <img
+          <Image
             src={
               item.image ||
               "https://placehold.co/600x400/FFF8E1/cc7000?text=Le+Gourmet"
             }
             alt={item.name}
+            width={600}
+            height={192}
             className="w-full h-48 object-cover rounded"
             onError={(e) => {
               (e.currentTarget as HTMLImageElement).src =
@@ -84,10 +87,26 @@ const InfoModal: React.FC<InfoModalProps> = ({
                     key={addon.id}
                     className="flex justify-between items-center bg-white rounded-lg p-2 border border-amber-100"
                   >
-                    <div className="flex-1">
-                      <span className="text-sm font-medium text-gray-800">
-                        {addon.name}
-                      </span>
+                    <div className="flex items-center flex-1 gap-2">
+                      {addon.image && (
+                        <Image
+                          src={addon.image}
+                          alt={addon.name}
+                          width={32}
+                          height={32}
+                          className="w-8 h-8 object-cover rounded"
+                          onError={(e) => {
+                            (
+                              e.currentTarget as HTMLImageElement
+                            ).style.display = "none";
+                          }}
+                        />
+                      )}
+                      <div>
+                        <span className="text-sm font-medium text-gray-800">
+                          {addon.name}
+                        </span>
+                      </div>
                     </div>
                     <span className="text-sm font-semibold text-amber-700 ml-2">
                       + {formatCurrency(addon.price)}

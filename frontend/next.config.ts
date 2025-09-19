@@ -18,7 +18,28 @@ console.log("💻 Platform:", process.platform);
 console.log("=" .repeat(50));
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '4000',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
